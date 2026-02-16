@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>GO PRO MLM SYSTEM – MOVYTEC | Atomy Edition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Fonts - Atomy Style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* ATOMY COLOR PALETTE */
+        :root {
+            --atomy-red: #E31E24;
+            --atomy-dark-red: #C41E3A;
+            --atomy-gold: #D4AF37;
+            --atomy-light-gold: #FFD700;
+            --atomy-dark: #1a1a1a;
+            --atomy-bg: #0d0d0d;
+            --atomy-gray: #2a2a2a;
+            --atomy-light: #f5f5f5;
+            --atomy-white: #ffffff;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: var(--atomy-bg);
+            color: var(--atomy-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* ANIMATED BACKGROUND */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(227, 30, 36, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(227, 30, 36, 0.05) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundPulse 15s ease-in-out infinite;
+        }
+        
+        @keyframes backgroundPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+        
+        /* GRID PATTERN OVERLAY */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(227, 30, 36, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(227, 30, 36, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 20px;
+            position: relative;
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            background: linear-gradient(135deg, var(--atomy-dark) 0%, var(--atomy-bg) 100%);
+            padding: 60px 20px 40px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 3px solid var(--atomy-red);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(227, 30, 36, 0.1) 25%, 
+                rgba(212, 175, 55, 0.1) 50%, 
+                rgba(227, 30, 36, 0.1) 75%, 
+                transparent 100%);
+            animation: shimmer 8s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(50%); }
+        }
+        
+        /* LOGO AREA */
+        .logo-container {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--atomy-gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+        
+        /* VIDEO SECTION */
+        .video-section {
+            background: var(--atomy-dark);
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-top: 2px solid var(--atomy-red);
+            border-bottom: 2px solid var(--atomy-red);
+            position: relative;
+        }
+        
+        .video-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                rgba(227, 30, 36, 0.03) 50%, 
+                transparent 100%);
+            pointer-events: none;
+        }
+        
+        .video-title {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--atomy-gold);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .videos-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: nowrap;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .video-wrapper {
+            flex: 0 0 calc(33.333% - 20px);
+            max-width: 320px;
+            min-width: 250px;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--atomy-gray);
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(227, 30, 36, 0.2);
+            transition: all 0.4s ease;
+        }
+        
+        .video-wrapper:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.7),
+                0 0 50px rgba(227, 30, 36, 0.4),
+                0 0 80px rgba(212, 175, 55, 0.3);
+        }
+        
+        .video-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid var(--atomy-red);
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .video-wrapper:hover::before {
+            opacity: 1;
+        }
+        
+        .video-frame {
+            width: 100%;
+            height: 500px;
+            border: none;
+            display: block;
+            background: #000;
+        }
+        
+        .video-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(227, 30, 36, 0.95), transparent);
+            padding: 15px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            color: var(--atomy-white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+        
+        /* TYPOGRAPHY */
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--atomy-red);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 900;
+            text-shadow: 
+                0 0 20px rgba(227, 30, 36, 0.5),
+                0 0 40px rgba(227, 30, 36, 0.3);
+            position: relative;
+            z-index: 2;
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(227, 30, 36, 0.5); }
+            50% { text-shadow: 0 0 40px rgba(227, 30, 36, 0.8), 0 0 60px rgba(212, 175, 55, 0.4); }
+        }
+        
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-top: 60px;
+            margin-bottom: 20px;
+            color: var(--atomy-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--atomy-red), var(--atomy-gold));
+            box-shadow: 0 0 15px var(--atomy-red);
+        }
+        
+        h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            color: var(--atomy-light-gold);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        p {
+            font-size: 1.05rem;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+        
+        /* BOXES */
+        .box {
+            background: linear-gradient(135deg, var(--atomy-gray) 0%, var(--atomy-dark) 100%);
+            border-radius: 20px;
+            padding: 35px;
+            margin-top: 40px;
+            border: 1px solid rgba(227, 30, 36, 0.3);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(227, 30, 36, 0.1), 
+                transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .box:hover::before {
+            left: 100%;
+        }
+        
+        .box:hover {
+            border-color: var(--atomy-red);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.6),
+                0 0 30px rgba(227, 30, 36, 0.3);
+        }
+        
+        /* BRANDS BOX */
+        .brands-box {
+            background: linear-gradient(135deg, var(--atomy-gray), var(--atomy-dark));
+            border: 2px solid var(--atomy-red);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .brands-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(227, 30, 36, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .brand-item a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .brand-item {
+            background: var(--atomy-dark);
+            padding: 25px;
+            border-radius: 15px;
+            font-weight: bold;
+            color: var(--atomy-gold);
+            font-size: 1.1rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .brand-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(227, 30, 36, 0.2), transparent);
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+        }
+        
+        .brand-item:hover {
+            border-color: var(--atomy-red);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(227, 30, 36, 0.4);
+            color: var(--atomy-light-gold);
+        }
+        
+        .brand-item:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* BADGES */
+        .universal-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--atomy-red), var(--atomy-dark-red));
+            color: var(--atomy-white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(227, 30, 36, 0.4);
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* HIGHLIGHT BOX */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--atomy-red) 0%, var(--atomy-dark-red) 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--atomy-gold);
+            box-shadow: 
+                0 15px 50px rgba(227, 30, 36, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(212, 175, 55, 0.1) 50%, 
+                transparent 70%);
+            animation: diagonalMove 6s linear infinite;
+        }
+        
+        @keyframes diagonalMove {
+            from { transform: translate(-100%, -100%); }
+            to { transform: translate(100%, 100%); }
+        }
+        
+        .highlight-box h3 {
+            color: var(--atomy-white);
+            font-size: 1.8rem;
+            margin-top: 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .highlight-box p {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* STATS GRID */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .stat-card {
+            background: var(--atomy-dark);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border-left: 5px solid var(--atomy-red);
+            border-right: 5px solid var(--atomy-gold);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(227, 30, 36, 0.1) 0%, 
+                transparent 50%, 
+                rgba(212, 175, 55, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(227, 30, 36, 0.4);
+        }
+        
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+        
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: var(--atomy-gold);
+            font-weight: 900;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stat-label {
+            color: var(--atomy-light);
+            margin-top: 10px;
+            font-size: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* CTA BUTTON */
+        .cta {
+            text-align: center;
+            margin-top: 70px;
+            margin-bottom: 50px;
+        }
+        
+        .cta a {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--atomy-red), var(--atomy-dark-red));
+            color: var(--atomy-white);
+            padding: 20px 45px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 30px rgba(227, 30, 36, 0.5),
+                0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .cta a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.3), transparent);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+        
+        .cta a:hover {
+            transform: scale(1.1);
+            box-shadow: 
+                0 15px 50px rgba(227, 30, 36, 0.7),
+                0 0 40px rgba(212, 175, 55, 0.5);
+        }
+        
+        .cta a:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+        
+        /* TABLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        table th {
+            background: linear-gradient(135deg, var(--atomy-red), var(--atomy-dark-red));
+            color: var(--atomy-white);
+            padding: 18px;
+            text-align: left;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        table td {
+            padding: 15px 18px;
+            border-bottom: 1px solid rgba(227, 30, 36, 0.2);
+            background: var(--atomy-gray);
+        }
+        
+        table tr:hover td {
+            background: rgba(227, 30, 36, 0.1);
+        }
+        
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 60px;
+            background: var(--atomy-dark);
+            border-top: 3px solid var(--atomy-red);
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                rgba(227, 30, 36, 0.1) 0%, 
+                transparent 50%);
+            pointer-events: none;
+        }
+        
+        .footer p {
+            position: relative;
+            z-index: 2;
+            color: var(--atomy-light);
+        }
+        
+        .footer strong {
+            color: var(--atomy-gold);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+        }
+        
+        /* LISTS */
+        ul {
+            margin-left: 25px;
+            margin-top: 15px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 10px;
+        }
+        
+        li::before {
+            content: '▸';
+            position: absolute;
+            left: -15px;
+            color: var(--atomy-red);
+            font-weight: bold;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .video-title {
+                font-size: 1.5rem;
+            }
+            
+            .videos-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .video-wrapper {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            .video-frame {
+                height: 500px;
+            }
+            
+            .brands-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta a {
+                font-size: 1.1rem;
+                padding: 18px 35px;
+            }
+        }
+        
+        /* SCROLL ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .box, .stat-card, .brand-item {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <div class="logo-container">
+            <div class="logo-text">⚡ MOVYTEC ⚡</div>
+        </div>
+        <h1>GO PRO MLM SYSTEM</h1>
+        <p style="font-size: 1.2rem; position: relative; z-index: 2;"><strong>El Sistema Universal de Capacitación para CUALQUIER Red de Mercadeo</strong></p>
+        <span class="universal-badge">✅ FUNCIONA CON TODAS LAS MARCAS MLM</span>
+    </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<section class="video-section">
+    <div class="container">
+        <h2 class="video-title">🎥 Mira Cómo Funciona el Sistema</h2>
+        <div class="videos-container">
+            <!-- VIDEO 1 -->
+            <div class="video-wrapper">
+                <iframe 
+                    class="video-frame"
+                    src="https://www.youtube.com/embed/VIDEO_ID_1"
+                    title="Video 1"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+                <div class="video-label">Video 1: Introducción</div>
+            </div>
+            
+            <!-- VIDEO 2 -->
+            <div class="video-wrapper">
+                <iframe 
+                    class="video-frame"
+                    src="https://www.youtube.com/embed/VIDEO_ID_2"
+                    title="Video 2"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+                <div class="video-label">Video 2: Beneficios</div>
+            </div>
+            
+            <!-- VIDEO 3 -->
+            <div class="video-wrapper">
+                <iframe 
+                    class="video-frame"
+                    src="https://www.youtube.com/embed/VIDEO_ID_3"
+                    title="Video 3"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+                <div class="video-label">Video 3: Resultados</div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 30px; color: var(--atomy-light); font-size: 0.9rem;">
+            <strong>📌 NOTA:</strong> Reemplaza "VIDEO_ID_1", "VIDEO_ID_2" y "VIDEO_ID_3" con los IDs reales de tus videos de YouTube
+        </p>
+    </div>
+</section>
+
+<div class="container">
+
+    <!-- COMPATIBLE CON TODAS LAS MARCAS -->
+    <div class="brands-box">
+        <h2 style="margin-top: 0; color: var(--atomy-gold); position: relative; z-index: 2; padding-left: 0;">🌟 SISTEMA COMPATIBLE CON TODAS LAS REDES</h2>
+        <p style="font-size: 1.1rem; position: relative; z-index: 2;">No importa tu compañía. Este sistema funciona para ti.</p>
+        <div class="brands-grid">
+            <div class="brand-item"><a href="https://www.immunotec.com" target="_blank" style="color: inherit; text-decoration: none;">💊 Immunotec</a></div>
+            <div class="brand-item"><a href="https://www.vitalhealth.com" target="_blank" style="color: inherit; text-decoration: none;">🌿 VitalHealth</a></div>
+            <div class="brand-item"><a href="https://www.atomy.com/mx" target="_blank" style="color: inherit; text-decoration: none;">🛍️ Atomy</a></div>
+            <div class="brand-item"><a href="https://www.activez.com" target="_blank" style="color: inherit; text-decoration: none;">⚡ Activez</a></div>
+            <div class="brand-item"><a href="https://www.herbalife.com.mx" target="_blank" style="color: inherit; text-decoration: none;">🔷 Herbalife</a></div>
+            <div class="brand-item"><a href="https://www.omnilife.com" target="_blank" style="color: inherit; text-decoration: none;">💎 Omnilife</a></div>
+            <div class="brand-item"><a href="https://www.nuskin.com" target="_blank" style="color: inherit; text-decoration: none;">🌐 Nu Skin</a></div>
+            <div class="brand-item">✨ Y CUALQUIER OTRA</div>
+        </div>
+        <p style="margin-top: 30px; font-weight: bold; color: var(--atomy-light-gold); position: relative; z-index: 2;">
+            Porque este sistema NO se enfoca en productos...<br>
+            Se enfoca en HABILIDADES UNIVERSALES de construcción de redes.
+        </p>
+    </div>
+
+    <!-- A QUIÉN VA DIRIGIDO -->
+    <h2>🎯 A QUIÉN VA DIRIGIDO</h2>
+    <div class="box">
+        <ul>
+            <li><strong>Líderes de CUALQUIER red de mercadeo</strong> (Immunotec, VitalHealth, Atomy, Activez, etc.)</li>
+            <li>Partners con equipos desordenados que no saben por dónde empezar</li>
+            <li>Distribuidores independientes cansados de:
+                <ul>
+                    <li>❌ Improvisar entrenamientos cada semana</li>
+                    <li>❌ Repetir lo mismo 1 a 1 con cada nuevo</li>
+                    <li>❌ Ver equipos que entran motivados y se van en 60 días</li>
+                    <li>❌ Depender de eventos presenciales que pocos asisten</li>
+                </ul>
+            </li>
+            <li>Networkers profesionales que quieren <strong>un sistema que trabaje por ellos</strong></li>
+        </ul>
+    </div>
+
+    <!-- BIG IDEA -->
+    <div class="highlight-box">
+        <h3>💡 LA GRAN IDEA</h3>
+        <p style="font-size: 1.2rem; line-height: 1.8;">
+            <strong>No vendemos videos.</strong><br>
+            <strong>No vendemos cursos genéricos.</strong><br><br>
+            Vendemos un <span style="color: var(--atomy-light-gold);">SISTEMA COMPLETO</span> que convierte personas normales<br>
+            en duplicadores profesionales... <strong>sin importar su compañía MLM.</strong>
+        </p>
+    </div>
+
+    <!-- TITULAR -->
+    <h2>🚀 Convierte tu red de mercadeo en un sistema de duplicación REAL en 30 días</h2>
+    <div class="box">
+        <p style="font-size: 1.15rem;">
+            Un plan profesional de <strong>20 videos GO PRO + Funnel personalizado CON TU MARCA</strong><br>
+            para que tu equipo aprenda <strong>qué hacer, cómo hacerlo y por qué hacerlo</strong><br>
+            (sin que tú estés repitiendo lo mismo todos los días).
+        </p>
+        <p style="margin-top: 25px; color: var(--atomy-light-gold); font-weight: bold;">
+            ✅ Funciona con Immunotec, VitalHealth, Atomy, Activez y CUALQUIER otra red<br>
+            ✅ Se personaliza 100% con TU marca, TU nombre y TU visión<br>
+            ✅ Las habilidades son universales: prospección, cierre, liderazgo, duplicación
+        </p>
+    </div>
+
+    <!-- PROBLEMA -->
+    <h2>🔴 EL PROBLEMA QUE TODOS LOS LÍDERES MLM ENFRENTAN</h2>
+    <div class="box">
+        <p style="font-size: 1.1rem;">No importa si estás en Immunotec, Atomy o cualquier otra red...</p>
+        <p>✔ Tu gente entra <strong>motivada</strong></p>
+        <p>✔ Al mes se <strong>desorienta</strong> (no sabe qué hacer)</p>
+        <p>✔ Al segundo mes se <strong>apaga</strong> (porque no ve resultados)</p>
+        <p>✔ Y tú vuelves a empezar… <strong>buscando más gente</strong></p>
+        <br>
+        <p style="font-size: 1.2rem; color: var(--atomy-red);"><strong>👉 Eso NO es falta de ganas.</strong></p>
+        <p style="font-size: 1.2rem; color: var(--atomy-gold);"><strong>👉 Es falta de SISTEMA.</strong></p>
+    </div>
+
+    <!-- ESTADÍSTICAS -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">80%</div>
+            <div class="stat-label">De los nuevos abandona<br>en los primeros 90 días</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">95%</div>
+            <div class="stat-label">No tiene un plan claro<br>de qué hacer día a día</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">70%</div>
+            <div class="stat-label">Nunca recibe capacitación<br>estructurada y profesional</div>
+        </div>
+    </div>
+
+    <!-- SOLUCIÓN -->
+    <h2>✅ LA SOLUCIÓN: SISTEMA GO PRO MOVYTEC</h2>
+    <div class="box">
+        <h3 style="color: var(--atomy-gold);">Imagina esto 👇</h3>
+        <p>Cada persona que entra a tu red (Immunotec, VitalHealth, Atomy, Activez, etc.):</p>
+        <ul>
+            <li>✅ Recibe un <strong>camino claro de 30 días</strong></li>
+            <li>✅ Ve <strong>1 video profesional diario</strong></li>
+            <li>✅ Aprende <strong>habilidades reales</strong> (no motivación vacía)</li>
+            <li>✅ Sigue un <strong>sistema paso a paso</strong></li>
+            <li>✅ Y empieza a <strong>duplicar TU MARCA</strong></li>
+        </ul>
+        <br>
+        <p style="font-size: 1.3rem; color: var(--atomy-gold); font-weight: bold; text-align: center;">
+            🎯 SIN depender de ti para cada cosa.
+        </p>
+    </div>
+
+    <!-- CONTENIDO -->
+    <h2>📦 QUÉ INCLUYE EL PAQUETE COMPLETO</h2>
+
+    <div class="box">
+        <h3>🎥 1. Plan de Capacitación GO PRO (20 videos profesionales)</h3>
+        <ul>
+            <li><strong>4 semanas completas</strong></li>
+            <li><strong>1 video por día</strong> (lunes a viernes)</li>
+            <li>Basado en <strong>Eric Worre – GO PRO</strong> (el libro #1 de MLM en el mundo)</li>
+            <li>Contenido: <strong>Mentalidad + Habilidades + Liderazgo + Duplicación</strong></li>
+            <li><strong>100% aplicable a CUALQUIER red</strong> (no habla de productos específicos)</li>
+        </ul>
+        <p style="margin-top: 20px; color: var(--atomy-light-gold);">
+            <strong>Temas incluidos:</strong><br>
+            ✔ Mindset del profesional vs amateur<br>
+            ✔ Prospección sin presión<br>
+            ✔ Invitación efectiva<br>
+            ✔ Presentación del negocio<br>
+            ✔ Seguimiento y cierre<br>
+            ✔ Manejo de objeciones<br>
+            ✔ Construcción de cultura de equipo<br>
+            ✔ Liderazgo por ejemplo
+        </p>
+    </div>
+
+    <div class="box">
+        <h3>🎨 2. Funnel de Ventas PERSONALIZADO 100% PARA TI</h3>
+        <p style="font-size: 1.1rem; color: var(--atomy-light-gold); font-weight: bold;">
+            NO te damos un embudo genérico.<br>
+            Te damos <span style="color: var(--atomy-gold);">TU PROPIO SISTEMA</span> con:
+        </p>
+        <ul style="margin-top: 15px;">
+            <li>✅ <strong>Tu nombre</strong> (eres TÚ el líder)</li>
+            <li>✅ <strong>Tu marca personal</strong> (Immunotec, VitalHealth, Atomy, Activez, o la que tengas)</li>
+            <li>✅ <strong>Tu WhatsApp</strong> (la gente te contacta directamente)</li>
+            <li>✅ <strong>Tu visión y valores</strong></li>
+            <li>✅ <strong>Tus colores y logo</strong> (si los tienes)</li>
+            <li>✅ <strong>Tu llamado a la acción</strong></li>
+        </ul>
+        <p style="margin-top: 20px; background: var(--atomy-dark); padding: 20px; border-radius: 10px; border-left: 4px solid var(--atomy-gold);">
+            <strong>Resultado:</strong> Un sistema que luce 100% profesional, con TU identidad,<br>
+            y que funciona 24/7 educando a tu equipo sin que tengas que estar presente.
+        </p>
+    </div>
+
+    <div class="box">
+        <h3>🗺️ 3. Ruta de duplicación paso a paso (sistema "peras y manzanas")</h3>
+        <p>Tu nuevo distribuidor sabe exactamente qué hacer cada día:</p>
+        <ul>
+            <li><strong>Día 1:</strong> Qué ve el nuevo (bienvenida + mentalidad)</li>
+            <li><strong>Día 7:</strong> Qué ya entiende (el plan, la visión)</li>
+            <li><strong>Día 15:</strong> Qué ya hace (primeras invitaciones, primeros prospectos)</li>
+            <li><strong>Día 30:</strong> Qué ya duplica (está entrenando a SU gente nueva)</li>
+        </ul>
+        <p style="margin-top: 20px; color: var(--atomy-light-gold); font-weight: bold;">
+            📊 Cada persona tiene un PLAN CLARO.<br>
+            No más confusión. No más "¿y ahora qué hago?"
+        </p>
+    </div>
+
+    <div class="box">
+        <h3>🆓 4. Sistema "Líder Libre" – Automatización de tu entrenamiento</h3>
+        <p style="font-size: 1.1rem;">Antes:</p>
+        <ul>
+            <li>❌ Tú explicabas todo</li>
+            <li>❌ Tú repetías lo mismo 20 veces</li>
+            <li>❌ Tú eras el "gurú" del que todos dependían</li>
+        </ul>
+        <p style="font-size: 1.1rem; margin-top: 20px;">Ahora:</p>
+        <ul>
+            <li>✅ <strong>El sistema educa</strong></li>
+            <li>✅ <strong>El funnel capacita</strong></li>
+            <li>✅ <strong>Los videos entrenan</strong></li>
+            <li>✅ <strong>Tú LIDERAS</strong> (no explicas lo básico 100 veces)</li>
+        </ul>
+        <p style="margin-top: 25px; text-align: center; font-size: 1.2rem; color: var(--atomy-gold); font-weight: bold;">
+            🎯 Recuperas tu tiempo. Multiplicas tu impacto.
+        </p>
+    </div>
+
+    <!-- AUTORIDAD -->
+    <h2>🏆 POR QUÉ ESTE SISTEMA FUNCIONA (Y OTROS NO)</h2>
+    <div class="box">
+        <ul style="font-size: 1.05rem;">
+            <li>✅ <strong>No depende del producto</strong> (funciona con Immunotec, Atomy, VitalHealth, etc.)</li>
+            <li>✅ <strong>No depende del plan de compensación</strong> (habilidades universales)</li>
+            <li>✅ <strong>Funciona en cualquier MLM</strong> (es un sistema de HABILIDADES, no de productos)</li>
+            <li>✅ <strong>Se basa en metodología probada</strong> (Eric Worre – GO PRO, 25+ años de experiencia)</li>
+            <li>✅ <strong>Forma profesionales, no improvisados</strong></li>
+            <li>✅ <strong>Es personalizable</strong> (se adapta a TU marca y TU estilo)</li>
+            <li>✅ <strong>Automatiza la capacitación</strong> (trabaja 24/7 sin ti)</li>
+        </ul>
+        <br>
+        <p style="font-size: 1.3rem; color: var(--atomy-red); text-align: center; font-weight: bold;">
+            La gente NO fracasa en MLM por falta de producto…
+        </p>
+        <p style="font-size: 1.3rem; color: var(--atomy-gold); text-align: center; font-weight: bold;">
+            Fracasa por NO SABER QUÉ HACER.
+        </p>
+        <p style="margin-top: 20px; text-align: center; color: var(--atomy-light-gold);">
+            Este sistema les da el MAPA COMPLETO.
+        </p>
+    </div>
+
+    <!-- COMPARACIÓN -->
+    <h2>📊 ANTES vs DESPUÉS del Sistema GO PRO</h2>
+    <div class="box">
+        <table>
+            <tr>
+                <th>❌ SIN Sistema</th>
+                <th>✅ CON Sistema GO PRO</th>
+            </tr>
+            <tr>
+                <td>Entrenas 1 a 1 todo el tiempo</td>
+                <td style="color: var(--atomy-gold); font-weight: bold;">El sistema capacita automáticamente</td>
+            </tr>
+            <tr>
+                <td>Repites lo mismo 50 veces</td>
+                <td style="color: var(--atomy-gold); font-weight: bold;">Videos profesionales lo explican</td>
+            </tr>
+            <tr>
+                <td>Tu equipo improvisa</td>
+                <td style="color: var(--atomy-gold); font-weight: bold;">Tu equipo sigue un plan claro</td>
+            </tr>
+            <tr>
+                <td>80% abandona en 90 días</td>
+                <td style="color: var(--atomy-gold); font-weight: bold;">Retención y duplicación REAL</td>
+            </tr>
+            <tr>
+                <td>Tú eres el cuello de botella</td>
+                <td style="color: var(--atomy-gold); font-weight: bold;">Tu red crece sin ti</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- INVERSIÓN -->
+    <h2>💰 INVERSIÓN Y VALOR</h2>
+    <div class="box" style="background: linear-gradient(135deg, var(--atomy-gray), var(--atomy-dark)); border: 2px solid var(--atomy-gold);">
+        <h3 style="color: var(--atomy-white); text-align: center; margin-top: 0;">¿Cuánto cuesta seguir perdiendo gente cada mes?</h3>
+        <p style="text-align: center; margin-top: 20px;">
+            Si pierdes 5 personas al mes porque no tienen claridad...<br>
+            Y cada una podría generar $500 USD mensuales...<br>
+            Estás perdiendo <strong style="color: var(--atomy-red); font-size: 1.3rem;">$2,500 USD/mes</strong>
+        </p>
+        <p style="text-align: center; margin-top: 30px; font-size: 1.2rem; color: var(--atomy-gold); font-weight: bold;">
+            El Sistema GO PRO MOVYTEC es una inversión ÚNICA<br>
+            que te ahorra esa pérdida CADA MES.
+        </p>
+        <p style="text-align: center; margin-top: 25px; color: var(--atomy-light-gold);">
+            Precio de lanzamiento especial para primeros 20 partners.<br>
+            <strong>Solicita información por WhatsApp.</strong>
+        </p>
+    </div>
+
+    <!-- BONOS -->
+    <h2>🎁 BONOS INCLUIDOS (solo para los primeros 20)</h2>
+    <div class="box">
+        <ul>
+            <li>✅ <strong>Bono 1:</strong> Sesión de estrategia 1-a-1 de 45 minutos para configurar tu funnel</li>
+            <li>✅ <strong>Bono 2:</strong> Plantillas de mensajes para WhatsApp (prospección, invitación, seguimiento)</li>
+            <li>✅ <strong>Bono 3:</strong> Guía "Cómo presentar el sistema a tu equipo" (documento PDF + video)</li>
+            <li>✅ <strong>Bono 4:</strong> Acceso a grupo privado de soporte para partners MOVYTEC</li>
+            <li>✅ <strong>Bono 5:</strong> Actualizaciones del sistema sin costo por 12 meses</li>
+        </ul>
+    </div>
+
+    <!-- CTA PRINCIPAL -->
+    <div class="cta">
+        <h2 style="color: var(--atomy-gold);">🔥 ¿Listo para tener tu propio Sistema GO PRO?</h2>
+        <p style="font-size: 1.15rem; margin: 25px 0;">
+            No importa si estás en <strong>Immunotec, VitalHealth, Atomy, Activez</strong> o cualquier otra red.<br>
+            Este sistema funciona para TODOS.
+        </p>
+        <p style="font-size: 1.1rem; margin-bottom: 30px;">
+            📲 Escríbeme ahora por WhatsApp y te explico cómo personalizamos<br>
+            el sistema 100% para TI y TU MARCA.
+        </p>
+        <a href="https://wa.me/522214282564?text=Quiero%20el%20sistema%20GO%20PRO%20MOVYTEC%20personalizado%20para%20mi%20red" target="_blank">
+            👉 CONTACTAR POR WHATSAPP
+        </a>
+        <p style="margin-top: 25px; color: var(--atomy-light);">
+            <strong>Mensaje sugerido:</strong><br>
+            "Quiero el sistema GO PRO MOVYTEC personalizado para mi red [nombre de tu compañía]"
+        </p>
+    </div>
+
+    <!-- FAQ -->
+    <h2>❓ PREGUNTAS FRECUENTES</h2>
+    
+    <div class="box">
+        <h3>¿Funciona para mi compañía MLM específica?</h3>
+        <p>SÍ. El sistema se basa en habilidades universales de construcción de redes (prospección, invitación, cierre, liderazgo). No importa si vendes suplementos, cosméticos, servicios o tecnología. Las habilidades son las mismas.</p>
+    </div>
+
+    <div class="box">
+        <h3>¿Puedo usar mi propia marca y colores?</h3>
+        <p>ABSOLUTAMENTE. El funnel se personaliza 100% con tu nombre, tu marca, tus colores, tu WhatsApp y tu visión. No es un sistema genérico.</p>
+    </div>
+
+    <div class="box">
+        <h3>¿Necesito conocimientos técnicos?</h3>
+        <p>NO. Te entregamos el funnel listo. Solo lo compartes con tu equipo (por WhatsApp, email, redes sociales). Nosotros nos encargamos de la parte técnica.</p>
+    </div>
+
+    <div class="box">
+        <h3>¿Cuánto tiempo toma implementarlo?</h3>
+        <p>El funnel está listo en 3-5 días después de que nos das la información de tu marca. La implementación con tu equipo es inmediata: solo compartes el link.</p>
+    </div>
+
+    <!-- ÚLTIMA LLAMADA -->
+    <div class="highlight-box" style="margin-top: 60px;">
+        <h3>⏰ ÚLTIMA LLAMADA</h3>
+        <p style="font-size: 1.15rem; line-height: 1.8;">
+            Solo trabajamos con <strong>20 partners este mes</strong><br>
+            para garantizar personalización de calidad.<br><br>
+            Si estás leyendo esto, todavía hay espacio.<br>
+            Pero no esperes mucho.
+        </p>
+        <a href="https://wa.me/522214282564?text=Quiero%20información%20del%20sistema%20GO%20PRO%20MOVYTEC" target="_blank" style="display: inline-block; background: var(--atomy-white); color: var(--atomy-red); padding: 15px 35px; border-radius: 40px; font-weight: bold; text-decoration: none; margin-top: 25px; font-family: 'Orbitron', sans-serif;">
+            📲 QUIERO MI SISTEMA AHORA
+        </a>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <p><strong>MOVYTEC – GO PRO MLM SYSTEM</strong></p>
+    <p>No construimos redes grandes. Construimos redes que se duplican solas.</p>
+    <p style="margin-top: 20px; font-size: 0.85rem;">
+        Compatible con: Immunotec | VitalHealth | Atomy | Activez | Herbalife | Omnilife | Nu Skin | Y todas las demás
+    </p>
+    <p style="margin-top: 15px;">
+        WhatsApp: +52 221 428 2564
+    </p>
+</div>
+
+</body>
+</html>
